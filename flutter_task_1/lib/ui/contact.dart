@@ -1,18 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_1/home.dart';
+import 'package:flutter_task_1/ui/about.dart';
 import 'package:flutter_task_1/ui/menus.dart';
 import 'package:flutter_task_1/ui/services.dart';
-import 'package:flutter_task_1/ui/about.dart';
-import 'package:flutter_task_1/ui/contact.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Contact extends StatefulWidget {
+  const Contact({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Contact> createState() => _ContactState();
 }
 
-class _HomeState extends State<Home> {
+class _ContactState extends State<Contact> {
   final Color textButtonHoverColor = Colors.black;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController subjectController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
+
+  void _submitForm() {
+    String name = nameController.text;
+    String email = emailController.text;
+    String subject = subjectController.text;
+    String message = messageController.text;
+
+    print('Name: $name, Email: $email, Subject: $subject, Message: $message');
+
+    nameController.clear();
+    emailController.clear();
+    subjectController.clear();
+    messageController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -216,95 +234,70 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/fastfood.jpg',
-              width: 1500,
-              height: 450,
-              fit: BoxFit.fill,
-            ),
-            const Text(
-              '\nPOPULAR ITEMS',
-              style: TextStyle(
-                fontSize: 25,
-                color: Color.fromARGB(255, 167, 37, 57),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            fastfood(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget fastfood() {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-      ),
-      itemCount: 6,
-      itemBuilder: (context, index) {
-        return buildCard(index);
-      },
-    );
-  }
-
-  Widget buildCard(int index) {
-    List<String> images = [
-      'burger.jpg',
-      'pizza.jpg',
-      'fries.jpeg',
-      'sandwich.jpg',
-      'taco.jpg',
-      'coffee.jpg',
-    ];
-
-    return InkWell(
-      onHover: (hover) {},
-      child: Card(
-        elevation: 5.0,
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/${images[index]}',
-              width: 450,
-              height: 350,
-              fit: BoxFit.fill,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                getProductName(index),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.black,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'CONTACT US',
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Color.fromARGB(255, 167, 37, 57),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Name',
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: subjectController,
+                  decoration: const InputDecoration(
+                    labelText: 'Subject',
+                  ),
+                ),
+                const SizedBox(height: 16.0),
+                TextFormField(
+                  controller: messageController,
+                  decoration: const InputDecoration(
+                    labelText: 'Message',
+                  ),
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: _submitForm,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 167, 37, 57),
+                  ),
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
-  }
-
-  String getProductName(int index) {
-    List<String> productNames = [
-      'Burger',
-      'Pizza',
-      'Fries',
-      'Sandwich',
-      'Taco',
-      'Coffee'
-    ];
-    return productNames[index];
   }
 }

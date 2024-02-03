@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.1.0
+  universal_html: ^2.2.4
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -53,6 +54,21 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+  - assets/burger1.png
+  - assets/burger2.png
+  - assets/burger3.png
+  - assets/burger4.png
+  - assets/burger5.png
+  - assets/iconbakery.png
+  - assets/iconburger.png
+  - assets/iconbeverage.png
+  - assets/iconchicken.png
+  - assets/iconseafood.png
+  - assets/iconfries.png
+  - assets/icontaco.png
+  - assets/iconsandwich.png
+  - assets/icondonut.png
+  - assets/iconpizza.png
   - assets/fastfood.jpg
   - assets/vegicon.png
   - assets/nonvegicon.png
@@ -64,6 +80,7 @@ flutter:
   - assets/coffee.jpg
   - assets/woman.png
   - assets/image.jpg
+  - assets/image2.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

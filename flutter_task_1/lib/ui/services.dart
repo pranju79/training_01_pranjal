@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_1/ui/menus.dart';
-import 'package:flutter_task_1/ui/services.dart';
+import 'package:flutter_task_1/home.dart';
 import 'package:flutter_task_1/ui/about.dart';
 import 'package:flutter_task_1/ui/contact.dart';
+import 'package:flutter_task_1/ui/menus.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Services extends StatefulWidget {
+  const Services({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Services> createState() => _ServicesState();
 }
 
-class _HomeState extends State<Home> {
+class _ServicesState extends State<Services> {
   final Color textButtonHoverColor = Colors.black;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,96 +214,105 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
+      body: const SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
-            Image.asset(
-              'assets/fastfood.jpg',
-              width: 1500,
-              height: 450,
-              fit: BoxFit.fill,
-            ),
-            const Text(
-              '\nPOPULAR ITEMS',
+            SizedBox(height: 20),
+            Text(
+              'OUR SERVICES',
               style: TextStyle(
                 fontSize: 25,
                 color: Color.fromARGB(255, 167, 37, 57),
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
-            fastfood(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget fastfood() {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-      ),
-      itemCount: 6,
-      itemBuilder: (context, index) {
-        return buildCard(index);
-      },
-    );
-  }
-
-  Widget buildCard(int index) {
-    List<String> images = [
-      'burger.jpg',
-      'pizza.jpg',
-      'fries.jpeg',
-      'sandwich.jpg',
-      'taco.jpg',
-      'coffee.jpg',
-    ];
-
-    return InkWell(
-      onHover: (hover) {},
-      child: Card(
-        elevation: 5.0,
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/${images[index]}',
-              width: 450,
-              height: 350,
-              fit: BoxFit.fill,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                getProductName(index),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.black,
+            SizedBox(height: 20),
+            ServiceCardRow(
+              serviceCards: [
+                ServiceCard(
+                  color: Color.fromARGB(255, 125, 186, 237),
+                  imageUrl:
+                      'https://cdn-icons-png.flaticon.com/512/7755/7755702.png',
+                  message: '\nGood Quality Food',
                 ),
-              ),
+                ServiceCard(
+                  color: Color.fromARGB(255, 140, 227, 143),
+                  imageUrl:
+                      'https://cdn-icons-png.flaticon.com/512/5952/5952766.png',
+                  message: '\nFast Delivery',
+                ),
+                ServiceCard(
+                  color: Color.fromARGB(255, 252, 197, 114),
+                  imageUrl:
+                      'https://png.pngtree.com/png-vector/20230206/ourmid/pngtree-quality-check-certified-badge-icon-png-image_6583296.png',
+                  message: '\nOrganic Guarantee',
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+}
 
-  String getProductName(int index) {
-    List<String> productNames = [
-      'Burger',
-      'Pizza',
-      'Fries',
-      'Sandwich',
-      'Taco',
-      'Coffee'
-    ];
-    return productNames[index];
+class ServiceCardRow extends StatelessWidget {
+  final List<Widget> serviceCards;
+
+  const ServiceCardRow({super.key, required this.serviceCards});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: serviceCards,
+    );
+  }
+}
+
+class ServiceCard extends StatelessWidget {
+  final Color color;
+  final String imageUrl;
+  final String message;
+
+  const ServiceCard({
+    Key? key,
+    required this.color,
+    required this.imageUrl,
+    required this.message,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400,
+      height: 400,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          Image.network(
+            imageUrl,
+            width: 250,
+            height: 250,
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

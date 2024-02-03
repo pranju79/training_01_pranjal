@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_1/home.dart';
+import 'package:flutter_task_1/ui/contact.dart';
 import 'package:flutter_task_1/ui/menus.dart';
 import 'package:flutter_task_1/ui/services.dart';
-import 'package:flutter_task_1/ui/about.dart';
-import 'package:flutter_task_1/ui/contact.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class About extends StatefulWidget {
+  const About({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<About> createState() => _AboutState();
 }
 
-class _HomeState extends State<Home> {
+class _AboutState extends State<About> {
   final Color textButtonHoverColor = Colors.black;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -217,94 +216,91 @@ class _HomeState extends State<Home> {
       ),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/fastfood.jpg',
-              width: 1500,
-              height: 450,
-              fit: BoxFit.fill,
-            ),
-            const Text(
-              '\nPOPULAR ITEMS',
-              style: TextStyle(
-                fontSize: 25,
-                color: Color.fromARGB(255, 167, 37, 57),
-                fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Image.asset(
+                'assets/fastfood.jpg',
+                width: 1500,
+                height: 400,
+                fit: BoxFit.fill,
               ),
-            ),
-            const SizedBox(height: 10),
-            fastfood(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget fastfood() {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-      ),
-      itemCount: 6,
-      itemBuilder: (context, index) {
-        return buildCard(index);
-      },
-    );
-  }
-
-  Widget buildCard(int index) {
-    List<String> images = [
-      'burger.jpg',
-      'pizza.jpg',
-      'fries.jpeg',
-      'sandwich.jpg',
-      'taco.jpg',
-      'coffee.jpg',
-    ];
-
-    return InkWell(
-      onHover: (hover) {},
-      child: Card(
-        elevation: 5.0,
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/${images[index]}',
-              width: 450,
-              height: 350,
-              fit: BoxFit.fill,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                getProductName(index),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.black,
+              const Center(
+                child: Text(
+                  '\nAbout Our Fast Food Restaurant',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 167, 37, 57),
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20.0),
+              const Text(
+                'Welcome to FastFeast, your ultimate destination for delicious fast food! At FastFeast, we take pride in serving high-quality, mouth-watering meals at affordable prices.',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              const Text(
+                'Our Mission:',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              const Text(
+                'To provide our customers with tasty and convenient fast food options while maintaining the highest standards of quality and customer service.',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              const Text(
+                'Our Menu:',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              const Text(
+                'Explore our diverse menu featuring a wide range of burgers, sandwiches, fries, salads, and desserts. We also offer vegetarian and gluten-free options to cater to all dietary preferences.',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black87,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              const Text(
+                'Location:',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              const Text(
+                'Visit us at 123 Main Street, Pune. We are open 7 days a week from 10:00 AM to 10:00 PM.',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  String getProductName(int index) {
-    List<String> productNames = [
-      'Burger',
-      'Pizza',
-      'Fries',
-      'Sandwich',
-      'Taco',
-      'Coffee'
-    ];
-    return productNames[index];
   }
 }

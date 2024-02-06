@@ -29,31 +29,25 @@ class _DashboardState extends State<Dashboard> {
       drawer: Drawer(
         child: Column(
           children: [
-            const UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 248, 182, 2),
-              ),
-              currentAccountPicture: Padding(
-                padding: EdgeInsets.only(left: 100),
-                child: Icon(
-                  Icons.fastfood,
-                  color: Colors.white,
-                  size: 65,
+            const SizedBox(
+              width: 350,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 248, 182, 2),
                 ),
-              ),
-              accountName: Padding(
-                padding: EdgeInsets.only(left: 60),
-                child: Text(
-                  'GoMeal.',
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: Colors.white,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 50, top: 35),
+                  child: Text(
+                    'GoMeal.',
+                    style: TextStyle(
+                      fontSize: 45,
+                      color: Colors.white,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
-              accountEmail: null,
             ),
             GestureDetector(
               onTap: () {
@@ -366,8 +360,8 @@ class _DashboardState extends State<Dashboard> {
                           padding: const EdgeInsets.only(right: 16),
                           child: Container(
                             padding: const EdgeInsets.all(32),
-                            width: 350,
-                            height: 350,
+                            width: 400,
+                            height: 400,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(color: Colors.white),
@@ -376,12 +370,30 @@ class _DashboardState extends State<Dashboard> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      '15% Off',
+                                      style: TextStyle(
+                                        fontStyle: FontStyle.normal,
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 230),
+                                      child: Icon(Icons.favorite,
+                                          color: Colors.red),
+                                    ),
+                                  ],
+                                ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 38),
+                                  padding: const EdgeInsets.only(left: 60),
                                   child: Image.asset(
                                     imageAssets[index],
                                     width: 200,
-                                    height: 200,
+                                    height: 180,
                                   ),
                                 ),
                                 Row(
@@ -390,7 +402,7 @@ class _DashboardState extends State<Dashboard> {
                                       child: Text(
                                         itemTexts[index],
                                         style: const TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.black,
@@ -403,9 +415,9 @@ class _DashboardState extends State<Dashboard> {
                                   children: [
                                     const Expanded(
                                       child: Text(
-                                        'Rs.199',
+                                        'Rs.99',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontStyle: FontStyle.normal,
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
@@ -420,6 +432,149 @@ class _DashboardState extends State<Dashboard> {
                                       iconSize: 36,
                                     ),
                                   ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+                const SizedBox(height: 30),
+                const Row(
+                  children: [
+                    Text(
+                      'Recent Order',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'View all',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 248, 182, 2),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_right_alt,
+                          color: Color.fromARGB(255, 248, 182, 2),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  height: 350,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        List<String> imageAssets = [
+                          'assets/burger1.png',
+                          'assets/japanramen.png',
+                          'assets/friedrice.png',
+                        ];
+                        List<String> itemTexts = [
+                          'Fish Burger',
+                          'Japan Ramen',
+                          'Fried Rice',
+                        ];
+
+                        index %= min(imageAssets.length, itemTexts.length);
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 16),
+                          child: Container(
+                            padding: const EdgeInsets.all(32),
+                            width: 400,
+                            height: 400,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(color: Colors.white),
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 300),
+                                      child: Icon(Icons.favorite,
+                                          color: Colors.red),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 60),
+                                  child: Image.asset(
+                                    imageAssets[index],
+                                    width: 200,
+                                    height: 180,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 110),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          itemTexts[index],
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 131),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Rs.99',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 93),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          '4.97km   • 21 min',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontStyle: FontStyle.normal,
+                                            color: Color.fromARGB(
+                                                255, 115, 115, 115),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
